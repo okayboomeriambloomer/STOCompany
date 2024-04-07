@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавление новой услуги</title>
+</head>
+<body>
+<button>
+    <a th:href="@{/admin/type-of-repairs}">Выйти из панели добавления</a>
+</button>
+<form th:object="${repair}" th:method="post" th:action="@{/admin/type-of-repair/new}">
+    <input type="hidden" name="id" th:value="*{id}">
+    <label for="name">Название услуги:</label>
+    <input type="text" id="name" th:field="*{name}">
+    <a style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">не видно</a>
+    <br>
+    <label for="price">Цена:</label>
+    <input type="text" id="price" th:field="*{price}">
+    <a style="color:red" th:if="${#fields.hasErrors('price')}" th:onerror>Некорректная стоимость услуги</a>
+    <br>
+    <input type="submit" value="Добавить">
+</form>
+</body>
+</html>

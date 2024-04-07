@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Все оказываемые услуги</title>
+</head>
+<body>
+<button>
+    <a th:href="@{/admin}">Вернуться в меню</a>
+</button>
+<br><br>
+<button>
+    <a th:href="@{/admin/type-of-repair/new}">Добавить услугу</a>
+</button>
+<br> <br>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Наименование</th>
+        <th>Цена</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="repair:${repairs}">
+        <td th:text="${repair.name}"/>
+        <td th:text="${repair.price}"/>
+        <td>
+            <form th:action="@{/admin/type-of-repair/{id}(id=${repair.id})}" th:method="get">
+                <button type="submit" class="button">Обновить данные</button>
+            </form>
+        </td>
+        <td>
+            <form  th:action="@{/admin/type-of-repair/{id}(id=${repair.id})}" th:method="delete">
+                <button type="submit" class="button">Удалить услугу</button>
+            </form>
+        </td>
+    </tbody>
+</table>
+</body>
+</html>

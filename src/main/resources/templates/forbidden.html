@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Доступ запрещен</title>
+</head>
+<body>
+На эту страницу можно зайти только Владельцу (ROLE_OWNER). Ваша текущая роль - <label th:text="${role}">123</label>
+<br><br>
+<button>
+    <a th:href="@{/}">Вернуться</a>
+</button>
+</body>
+</html>

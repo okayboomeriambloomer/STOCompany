@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Будем ждать!</title>
+</head>
+<body>
+Ваша заявка получена!
+<br>
+Вы записаны на: <label th:text="${#temporals.format(date, 'dd.MM.yyyy HH:mm')}"></label> <br>
+По адресу: <label th:text="${repairStation.address}"></label> <br>
+Связаться с менеджером вы можете по телефону:
+<label th:text="${repairStation.numberPhone}"></label> <label th:text="${repairStation.managerName}"></label>
+<br><br>
+<button>
+<a th:href="@{/}">Вернуться на главную</a>
+</button>
+</body>
+</html>

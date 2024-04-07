@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Панель администратора</title>
+</head>
+<body>
+<a href="/admin/upcoming-services">Журнал записи</a> <br>
+<a href="/admin/repair-stations">Текущие точки СТО</a> <br>
+<a href="/admin/type-of-repairs">Услуги, оказываемые на станциях</a> <br>
+<a href="/admin/history-services">История записей</a> <br><br>
+<button>
+    <a th:href="@{/}">Выйти из панели управления</a>
+</button>
+<button>
+    <a th:href="@{/logout}">Выйти из аккаунта</a>
+</button>
+</body>
+</html>

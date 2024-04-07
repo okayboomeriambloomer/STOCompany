@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Заполнение заявки на ремонт</title>
+</head>
+<body>
+<div style="float: left;">
+  <button>
+    <a th:href="@{/}">Отказаться от заполнения заявки</a>
+  </button>
+  <br><br>
+  <form th:action="@{/service-accept-process}" th:method="POST">
+    <div>Введите контактные данные:</div>
+    <input th:name="name" th:value="${person.name}" placeholder="Имя">
+    <input th:name="surname" th:value="${person.surname}" placeholder="Фамилия">
+    <input th:name="numberPhone" th:value="${person.numberPhone}" placeholder="Номер телефона">
+    <a style="color:red" th:if="${#fields.hasErrors('person.name')}" th:errors="${person.name}">етого никто не увидит</a>
+    <a style="color:red" th:if="${#fields.hasErrors('person.surname')}" th:errors="${person.surname}">етого никто не увидит</a>
+    <a style="color:red" th:if="${#fields.hasErrors('person.numberPhone')}" th:errors="${person.numberPhone}">етого никто не увидит</a>
+    <br><br>
+    <div>Введите данные о машине:</div>
+    <input th:name="brand" th:value="${car.brand}" placeholder="Марка машины">
+    <input th:name="govNumber" th:value="${car.govNumber}" placeholder="Гос. номер">
+    <input th:name="year" th:value="${#dates.format(car.year, 'yyyy')}" placeholder="Год выпуска">
+    <div style="color:red" th:if="${#fields.hasErrors('car.brand')}" th:errors="${car.brand}">етого никто не увидит</div>
+    <div style="color:red" th:if="${#fields.hasErrors('car.govNumber')}" th:errors="${car.govNumber}">етого никто не увидит</div>
+    <div style="color:red" th:if="${#fields.hasErrors('car.year')}" th:errors="${car.year}">етого никто не увидит</div>
+    <br><br>
+    <label for="station">Выберите точку СТО:</label>
+    <select id="station" th:name="repairStationId">
+      <option
+              th:each="repairStation : ${repairStations}"
+              th:value="${repairStation.id}"
+              th:text="${repairStation.address} + ' ' + '. Телефон: ' + ${repairStation.numberPhone}">
+
+      </option>
+    </select>
+    <div>
+      <label for="service">Выберите услугу:</label>
+      <select id="service" th:name="typeOfRepairId">
+        <option
+                th:each="typeOfRepair : ${typesOfRepair}"
+                th:value="${typeOfRepair.id}"
+                th:text="${typeOfRepair.name} + ' ' + '. Цена: ' + ${typeOfRepair.price}"></option>
+      </select>
+    </div>
+    <br><br>
+    <div>
+      <label for="date">Выберите дату оказания услуги</label>
+      <input id="date" type="datetime-local" th:value="${date}" th:name="date"/>
+    </div>
+    <br>
+    <button type="submit" class="button">Отправить заявку</button>
+  </form>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Таблица с архивными записями</title>
+</head>
+<body>
+<button>
+  <a th:href="@{/admin}">Вернуться в меню</a>
+</button>
+<table border="1">
+  <thead>
+  <tr>
+    <th>Имя</th>
+    <th>Фамилия</th>
+    <th>Номер телефона</th>
+    <th>Марка машины</th>
+    <th>Гос. номер</th>
+    <th>Год выпуска</th>
+    <th>Адрес точки</th>
+    <th>Менеджер</th>
+    <th>Телефон точки</th>
+    <th>Услуга</th>
+    <th>Цена</th>
+    <th>Дата</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="service:${historyServices}">
+    <td th:text="${service.person.name}"/>
+    <td th:text="${service.person.surname}"/>
+    <td th:text="${service.person.numberPhone}"/>
+    <td th:text="${service.car.brand}"/>
+    <td th:text="${service.car.govNumber}"/>
+    <td th:text="${#dates.format(service.car.year, 'yyyy')}"/>
+    <td th:text="${service.repairStation.address}"/>
+    <td th:text="${service.repairStation.managerName}"/>
+    <td th:text="${service.repairStation.numberPhone}"/>
+    <td th:text="${service.typeOfRepair.name}"/>
+    <td th:text="${service.typeOfRepair.price}"/>
+    <td th:text="${#temporals.format(service.date, 'dd.MM.yyyy HH:mm')}"/>
+    <td>
+      <form th:action="@{/admin/{id}/to-upcoming(id=${service.id})}" th:method="patch">
+        <button type="submit" class="button">Вернуть запись</button>
+      </form>
+    </td>
+  </tbody>
+</table>
+</body>
+</html>
